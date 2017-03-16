@@ -1,0 +1,59 @@
+*{ margin:0; padding:0;}
+li{ list-style:none;}
+img{ border:none; vertical-align:top;}
+a{ text-decoration:none; color:inherit;}
+.clear{zoom:1;}
+.clear:after{ content:""; display:block; clear:both;}
+
+body{ font-size:14px; font-family: Microsoft YaHei,Arial,Verdana,Sans-serif; background:#f2f2f2;}
+
+@font-face {
+    font-family: 'icomoon';
+    src:    url('/content/assets/css/page/fonts/icomoon.eot?gnnhfe1');
+    src:    url('/content/assets/css/page/fonts/icomoon.eot?gnnhfe1#iefix') format('embedded-opentype'),
+    url('/content/assets/css/page/fonts/icomoon.ttf?gnnhfe1') format('truetype'),
+    url('/content/assets/css/page/fonts/icomoon.woff?gnnhfe1') format('woff'),
+    url('/content/assets/css/page/fonts/icomoon.svg?gnnhfe1#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'icomoon' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.icon-youjiantou:before {
+    content: "\e91e";
+}
+
+.head{ width:100%; height:0.5rem; background:#da2f35; position:fixed; top:0; z-index:100;}
+.head h3{ width:100%; font-weight:400; font-size:0.15rem; color:#FFF; text-align:center; line-height:0.5rem;}
+.head a{ width:0.066rem; height:0.12rem; display:block; float:left; position:absolute; left:0.18rem; top:0.17rem; font-size:0.16rem; line-height:0.16rem; color:#FFF;}
+
+.main{ margin-top: 0.1rem;}
+
+.content1{ font-size: 0.12rem; line-height: 0.2rem; padding: 0.15rem 0;}
+.content1 div{ width: 90%; margin: 0 auto;}
+.pS{ padding-top: 0.05rem;}
+.content2{ font-size: 0.14rem; background: #FFF; line-height: 0.24rem; padding-bottom: 2rem;}
+.content2 div{ width: 90%; margin: 0 auto;}
+.content2 h4{ font-size: 0.15rem; line-height: 0.35rem; padding-top: 0.15rem;}
+.content2 p{ padding-top: 0.02rem;}
+.content2 .p1{ padding: 0;}
+
+.foot{ width: 100%; position: fixed; bottom: 0; background: #FFF; border-top: 1px solid #bcbcbc;}
+.foot .footTop{ width: 90%; margin: 0 auto;}
+.foot .footTop div{ padding: 0.1rem 0;}
+.foot .footTop div:nth-of-type(1){ margin-top: 0.05rem;}
+.foot .footBottom{ margin-top: 0.05rem; width: 100%; height: 0.5rem; text-align: center; background: rgb(171, 170, 170); line-height: 0.5rem; font-size: 0.16rem; color: #FFF; letter-spacing: 1em;}
+.foot .btnShow{ background: #da2f3c;}

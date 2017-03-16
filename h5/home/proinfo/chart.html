@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta http-equiv="cleartype" content="on">
+    <link rel="stylesheet" href="../../common/css/style.css">
+    <script src="../../common/js/jquery.js"></script>
+    <script src="../../common/js/echarts.js"></script>
+    <script src="../../common/js/common.js"></script>
+    <title>K线图</title>
+    <style>
+        body{
+            background: #edf0f5;
+        }
+        em {
+            font-size: .8rem;
+            font-style: normal;
+            font-weight: 400;
+        }
+
+        ul,li{
+            list-style: none;
+        }
+        .top{
+            padding: 0.3rem 0.8rem;
+            color: #000;
+            line-height: 1rem;
+            background: #fff;
+            overflow: hidden;
+        }
+       .left{
+            float: left;
+        }
+        .text-minor{
+            font-size: 0.8rem;
+            color: #7b7a7a;
+            text-align: left;
+            font-style: normal;
+        }
+        .text-l{
+            font-weight: bold;
+            font-size: 1.4rem;
+            font-style: normal;
+            line-height: 1.4;
+        }
+        .right{
+            float: right;
+        }
+         .rechage {
+            font-weight: 100;
+             color: #ff5c5c;
+             font-size: .12rem;
+        }
+        .panel{
+            padding: 0;
+            border-bottom: 0;
+            border-top: 0.1rem solid #f0f0f0;
+            background: #fff;
+            margin-top: 0.3rem;
+        }
+        .panel-title{
+            width: 100%;
+            overflow-x: scroll;
+        }
+        .mod-tab-min{
+            width: 36rem;
+        }
+        .mod-tab-min li{
+            float: left;
+            margin-left: .1rem;
+            padding: 0.5rem;
+            border-bottom: 0.2rem solid #fff;
+            position: relative;
+            font-size: .8rem;
+            list-style: none;
+        }
+        .mod-tab-min  .active{
+            border-bottom-color: #539B53;
+        }
+        .title-main{
+            position: fixed;
+            bottom: 3rem;
+            width: 100%;
+        }
+        .title{
+            padding: .2rem .4rem;
+            background: #f8f8f8;
+            line-height: 1.6rem;
+            height: 2rem;
+            overflow: hidden;
+        }
+        .title .left{
+            float: left;
+        }
+        .title .text-m{
+            font-size: 1rem;
+            font-style: normal;
+            line-height: 1;
+        }
+        .title .right{
+            float: right;
+        }
+        .title .text-highs{
+            color: #ff5c5c;
+            font-size: .8rem;
+            font-style: normal;
+        }
+        .title-order{
+            padding: 0.2rem .4rem;
+            background: #f8f8f8;
+            line-height: 1.6rem;
+            width: 100%;
+            height: 2rem;
+            opacity: 0;
+            top: 0;
+            -webkit-transform: translate(20rem,0);
+            -moz-transform: translate(20rem,0);
+            -ms-transform: translate(20rem,0);
+            -o-transform: translate(10rem,0);
+            transform: translate(20rem,0);
+            -webkit-transition: all .3s;
+            -o-transition: all .3s;
+            transition: all .3s;
+            position: absolute;
+        }
+        .title-order>span{
+            float: left;
+            width: 25%;
+            position: relative;
+            font-size: .8rem;
+            line-height: 1.6rem;
+        }
+        .title-order >div{
+            margin-right: 3%;
+            float: right;
+            width: 32%;
+            text-align: center;
+            position: relative;
+        }
+        .title-order>div>span{
+            display: block;
+            background: #0068b0;
+            color: #fff;
+            line-height: 1.6rem;
+            margin-top: .05rem;
+            border-radius: .2rem;
+            font-size: .8rem;
+        }
+        .title-order>div>ul{
+            width: 100%;
+            position: absolute;
+            bottom: 1.6rem;
+            display: none;
+            background: #fff;
+        }
+        .title-order div ul li{
+            float: none;
+            width: 100%;
+            border: 1px solid #f0f0f0;
+            border-bottom: 0;
+            font-size: 0.8rem;
+
+        }
+        .title-order .title-stopLoss{
+            width: 36%;
+        }
+        .title-order-open{
+            opacity: 1;
+            -webkit-transform: translate(0,0);
+            -moz-transform: translate(0,0);
+            -ms-transform: translate(0,0);
+            -o-transform: translate(0,0);
+            transform: translate(0,0);
+        }
+        .price{
+            text-align: left;
+            padding-left: 1rem;
+
+        }
+        .price>div{
+            line-height: 1;
+            margin-left: 0.3rem;
+        }
+        .text-lows{
+            color: #666;
+        }
+        .active1{
+            color: #ff5c5c;
+        }
+        .active2{
+            color: #54ba65;
+        }
+        .text-xxl{
+            font-size: 2rem;
+        }
+
+       .price .change span {
+           padding-left: .05rem;
+            line-height: 1rem;
+            display: block;
+           width: 3rem;
+           font-size: 0.8rem;
+        }
+        .sale,.buy{
+            font-size: 0.2rem;
+
+        }
+        .text-highs{
+            color: #ff5c5c;
+            margin-left: 0.3rem;
+            font-size: 0.8rem;
+            width: 1rem;
+        }
+        .volume{
+            height: 0.6rem;
+            padding: 0;
+            margin-top: .05rem;
+            margin-right: .5rem;
+            display: inline-block;
+        }
+        .sale .volume{
+            background: #54ba65;
+        }
+        .buy .volume{
+            background: #ff5c5c;
+        }
+        .bottom{
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+
+            height: 3rem;
+            background: #fff;
+            border-top: 0.1rem solid #f0f0f0;
+        }
+        .bottom ul li{
+            float: left;
+            padding: 0.4rem 0;
+            color: #666;
+            font-size: 0.8rem;
+        }
+        .order, .check{
+            width: 20%;
+            border-right: 0.1rem solid #f0f0f0;
+            box-sizing: border-box;
+        }
+         .checkActive{
+            color: #4471bc !important;
+        }
+        .order span,.check span{
+            text-align: center;
+            display: block;
+
+        }
+        .buy-high{
+            width: 30%;
+            background-color: #ff5c5c;
+        }
+        .buy-low{
+            width: 30%;
+            background-color: #54ba65;
+        }
+        .buy-high span ,.buy-low span{
+            text-align: center;
+            display: block;
+            color: #fff;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body >
+    <!--<div class="top">-->
+        <!--<div class="left">-->
+            <!--<div class="text-minor">可用金币</div>-->
+            <!--<em class="text-l">517.8</em>-->
+        <!--</div>-->
+        <!--<div class="right">-->
+            <!--<a href="javascript:;" class="text-recharge jt-jfmx" style="border: none;"></a>-->
+            <!--<span class="text-l rechage">领取</span>-->
+        <!--</div>-->
+    <!--</div>-->
+    <div class="panel">
+        <div class="panel-title">
+            <ul class="mod-tab-min ">
+                <li class="tick active">分时图</li>
+                <!--<li class="today" data-Type="1">全天</li>-->
+                <li class="market">盘口</li>
+                <li class="live">直播</li>
+                <li class="daily">日K</li>
+                <li class="daily3" data-Type="daily3">3分钟</li>
+                <li class="daily5">5分钟</li>
+                <li class="daily10">10分钟</li>
+                <li class="daily30">30分钟</li>
+                <li class="daily60">60分钟</li>
+            </ul>
+        </div>
+        <div style="position: relative">
+            <div id="chart" style="width: 100%;height:18rem;" ></div>
+            <div id="chartAll" style="width: 100%;height:22rem; position: absolute;top: 0;z-index: -1;"></div>
+            <div id="chartDay" style="width: 100%;height:22rem; position: absolute;top: 0;z-index: -1"></div>
+            <div id="chart3" style="width: 100%;height:22rem; position: absolute;top: 0;z-index: -1"></div>
+            <div id="chart5" style="width: 100%;height:22rem; position: absolute;top: 0;z-index: -1"></div>
+        </div>
+    </div>
+    <div class="title-main">
+       <div class="title">
+           <div class="left">
+               <span class="text-m">美原油</span>
+               <em class="text-minor">CL1704</em>
+           </div>
+           <div class="right">
+               <span class="text-minor">本时段持仓时间至 <em class="text-highs">明天,凌晨5:58</em></span>
+           </div>
+       </div>
+        <div class="title-order ">
+            <span>闪电下单设置</span>
+
+
+            <div class="title-count">
+                <span>交易数量 <em id="l-count"></em>手</span>
+                <ul class="title-count-list"></ul>
+            </div>
+            <div class="title-stopLoss">
+                <span>触发止损 $<em id="l-stopLoss"></em></span>
+                <ul class="title-stopLoss-list"></ul>
+            </div>
+        </div>
+        <ul class="clearfix left" style="width:48%;padding-top: .6rem; height: 2rem; padding-bottom: 0.6rem;background: #fff">
+
+            <li class="price" style="width:100%">
+                <div class="text-lows left"><em class="text-xxl">0</em></div>
+                <div class="change left">
+                    <span class="text-lows sit1">0</span>
+                    <span class="text-lows sit2">0</span>
+                </div>
+            </li>
+
+        </ul>
+        <ul class="clearfix right" style="width:52%;padding:.6rem 1.3rem;height:3.2rem; background: #fff;box-sizing: border-box">
+            <li class="sale" style="width:100%;">
+                <div class="clearfix">
+                    <span class="right text-highs askVolume">16</span>
+                    <div class="right">
+                        <em class="volume askVolumeWidth" ></em>
+                        <em class="text-minor " style="width: 0.128rem;">卖量</em>
+                    </div>
+                </div>
+            </li>
+            <li class="buy" style="width:100%;">
+                <div class="clearfix">
+                    <span class="right text-highs bidVolume">36</span>
+                    <div class="right">
+                        <em class="volume bidVolumeWidth" ></em>
+                        <em class="text-minor " style="width: 0.288rem;">买量</em>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="bottom">
+        <ul>
+            <li class="order" style="position: relative">
+                <span>
+                    <img src="../img/dingdan.png" alt="" style="width: 0.9rem">
+                </span>
+                <span>订单</span>
+                <div class="orderNum" style="display:none;width: 0.8rem;height: 0.8rem;border-radius: 50%;background: #ff5c5c;position: absolute;top:0.2rem;right: 0.2rem;text-align: center;line-height: 1rem;font-size: 0.8rem;color:#fff"></div>
+            </li>
+            <li class="check" data="1">
+                <span><img src="../img/sd_xd01.png" alt="" style="width: 0.9rem"></span>
+                <span class="setType">(已关闭)</span>
+            </li>
+            <li class="buy-high">
+                <span class="priceUp">0</span>
+                <span class="buyUp">买涨</span>
+            </li>
+            <li class="buy-low">
+                <span class="priceDown">0</span>
+                <span class="buyDown">买跌</span>
+            </li>
+        </ul>
+    </div>
+</body>
+<script src="./chart.js"></script>
+
+</html>

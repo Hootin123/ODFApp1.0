@@ -1,0 +1,33 @@
+blockquote,body,button,code,dd,dl,dt,fieldset,form,h1,h2,h3,h4,h5,h6,hr,input,legend,li,ol,p,pre,textarea,ul{padding:0;margin:0;border:none}
+a,a:active,a:focus,a:hover,a:link,a:visited{-webkit-tap-highlight-color:transparent;-webkit-tap-highlight-color:transparent;outline:0;background:0 0;text-decoration:none;color:#333}
+.clearfix{zoom:1}
+.clearfix:after{content:"";display:block;width:0;height:0;visibility:hidden;clear:both}
+html{-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}
+body{background:#f0f0f0;font-family:"微软雅黑"}
+@media screen and (max-width :360px){html{font-size:14px}
+}
+@media screen and (min-width:360px) and (max-width :479px){html{font-size:16px}
+}
+@media screen and (min-width:480px) and (max-width:640px){html{font-size:18px}
+}
+input, div{-webkit-tap-highlight-color:rgba(0,0,0,0);}
+
+
+/* 弹出层 */
+@-webkit-keyframes boxfade{0%{opacity:0;transform:scale(0.5)}
+    10%{opacity:.8;transform:scale(1.1)}
+    20%{opacity:.9;transform:scale(1)}
+    100%{opacity:1;transform:scale(1)}
+}
+@-o-keyframes boxfade{0%{opacity:0;transform:scale(0.5)}
+    10%{opacity:.8;transform:scale(1.1)}
+    20%{opacity:.9;transform:scale(1)}
+    100%{opacity:1;transform:scale(1)}
+}
+@-ms-keyframes boxfade{0%{opacity:0;transform:scale(0.5)}
+    10%{opacity:.8;transform:scale(1.1)}
+    20%{opacity:.9;transform:scale(1)}
+    100%{opacity:1;transform:scale(1)}
+}
+.alertBox{position:fixed;top:80%;left:50%;z-index:10001;margin:-20px 0 0 -150px;width:300px;height:40px;border-radius:5px;background:#000;color:#fff;text-align:center;font-size:15px;line-height:40px;-webkit-animation:boxfade 2s ease;-ms-animation:boxfade 2s ease;-o-animation:boxfade 2s ease}
+
