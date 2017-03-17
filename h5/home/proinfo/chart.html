@@ -8,10 +8,12 @@
     <meta name="format-detection" content="telephone=no" />
     <meta name="msapplication-tap-highlight" content="no">
     <meta http-equiv="cleartype" content="on">
-    <link rel="stylesheet" href="../../common/css/style.css">
-    <script src="../../common/js/jquery.js"></script>
-    <script src="../../common/js/echarts.js"></script>
-    <script src="../../common/js/common.js"></script>
+
+    <script>
+        var str='<link href="../../common/css/style.css?'+Math.random()+'" rel="stylesheet" type="text/css"/>';
+        document.write(str);
+    </script>
+
     <title>K线图</title>
     <style>
         body{
@@ -310,8 +312,8 @@
     <div class="title-main">
        <div class="title">
            <div class="left">
-               <span class="text-m">美原油</span>
-               <em class="text-minor">CL1704</em>
+               <span class="text-m"></span>
+               <em class="text-minor"></em>
            </div>
            <div class="right">
                <span class="text-minor">本时段持仓时间至 <em class="text-highs">明天,凌晨5:58</em></span>
@@ -385,7 +387,14 @@
             </li>
         </ul>
     </div>
+
+    <script src="../../common/js/jquery.js"></script>
+    <script src="../../common/js/echarts.js"></script>
+    <script>
+        document.write("<s" + "cript type='text/javascript' src='./chart.js?" + Math.random() + "'></s" + "cript>");
+        document.write("<s" + "cript type='text/javascript' src='../../common/js/common.js?" + Math.random() + "'></s" + "cript>");
+    </script>
 </body>
-<script src="./chart.js"></script>
+
 
 </html>

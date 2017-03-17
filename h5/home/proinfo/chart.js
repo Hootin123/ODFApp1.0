@@ -134,6 +134,9 @@ $('.today').on('click',function(){
     }
     var postData={
         "type":"1",
+       "data":{
+           'stockType':productId
+       }
     }
     var postData=JSON.stringify(postData);
     var xinT=JSON.stringify(xinT)
@@ -155,8 +158,9 @@ $('.today').on('click',function(){
             var openingPrice=getData.data.openingPrice;
             var askVolume=getData.data.askVolume; //卖量
             var bidVolume =getData.data.bidVolume; //买量
-            console.log(nowPrice,askPrice,bidPrice,openingPrice,askVolume)
-            changeData(nowPrice,askPrice,bidPrice,openingPrice,askVolume,bidVolume); //分时
+            var contractNo1 =getData.data.contractNo1;//产品号
+                console.log(nowPrice,askPrice,bidPrice,openingPrice,askVolume)
+            changeData(nowPrice,askPrice,bidPrice,openingPrice,askVolume,bidVolume,contractNo1); //分时
 
 
 
@@ -174,7 +178,7 @@ $('.today').on('click',function(){
 
 
 //分时
-function changeData(nowPrice,askPrice,bidPrice,openingPrice,askVolume,bidVolume) {
+function changeData(nowPrice,askPrice,bidPrice,openingPrice,askVolume,bidVolume,contractNo1) {
     var noDate=[new Date().getFullYear(), addZero(new Date().getMonth()+1), addZero(new Date().getDate()),addZero(new Date().getHours()),addZero(new Date().getMinutes())].join("")
     var atCutDate1=new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate(), '00','00','0','0');
     var atCutDate2=new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate(), '07','00', '0', '0');
@@ -250,6 +254,7 @@ function changeData(nowPrice,askPrice,bidPrice,openingPrice,askVolume,bidVolume)
         $('.askVolume').html(askVolume);
         $('.bidVolume').html(bidVolume);
 
+        $('.text-minor').html(productId+contractNo1)
 
 
 
@@ -1423,8 +1428,8 @@ $.ajax({
 })
 
 
-
-
+//产品名称
+$('.text-m').html(productName);
 
 
 var fa3={
