@@ -84,25 +84,25 @@ var Proinfo = React.createClass({
                     }}
                     rightButtonAction={() => {
                         if(this.props.type=='CL'){
-                            Open.H5Page(this.props.navigator,this.props.title+'玩法规则', C.uri+'/h5/rule/rule00001.html')
+                            Open.H5Page(this.props.navigator,this.props.title+'玩法规则', C.uri+'/ODF/rule/rule00001.html')
                         } else if(this.props.type=='GC'){
-                            Open.H5Page(this.props.navigator,this.props.title+'玩法规则', C.uri+'/h5/rule/rule00002.html')
+                            Open.H5Page(this.props.navigator,this.props.title+'玩法规则', C.uri+'/ODF/rule/rule00002.html')
                         }else if(this.props.type=='SL'){
-                            Open.H5Page(this.props.navigator,this.props.title+'玩法规则', C.uri+'/h5/rule/rule00003.html')
+                            Open.H5Page(this.props.navigator,this.props.title+'玩法规则', C.uri+'/ODF/rule/rule00003.html')
                         }else if(this.props.type=='CL'){
-                            Open.H5Page(this.props.navigator,this.props.title+'玩法规则', C.uri+'/h5/rule/rule00001.html')
+                            Open.H5Page(this.props.navigator,this.props.title+'玩法规则', C.uri+'/ODF/rule/rule00001.html')
                         }else if(this.props.type=='HSI'){
-                            Open.H5Page(this.props.navigator,this.props.title+'玩法规则', C.uri+'/h5/rule/rule00004.html')
+                            Open.H5Page(this.props.navigator,this.props.title+'玩法规则', C.uri+'/ODF/rule/rule00004.html')
                         }else if(this.props.type=='MHI'){
-                            Open.H5Page(this.props.navigator,this.props.title+'玩法规则', C.uri+'/h5/rule/rule00007.html')
+                            Open.H5Page(this.props.navigator,this.props.title+'玩法规则', C.uri+'/ODF/rule/rule00007.html')
                         }else if(this.props.type=='NQ'){
-                            Open.H5Page(this.props.navigator,this.props.title+'玩法规则', C.uri+'/h5/rule/rule00006.html')
+                            Open.H5Page(this.props.navigator,this.props.title+'玩法规则', C.uri+'/ODF/rule/rule00006.html')
                         }else if(this.props.type=='AD'){
-                            Open.H5Page(this.props.navigator,this.props.title+'玩法规则', C.uri+'/h5/rule/rule00008.html')
+                            Open.H5Page(this.props.navigator,this.props.title+'玩法规则', C.uri+'/ODF/rule/rule00008.html')
                         }else if(this.props.type=='CD'){
-                            Open.H5Page(this.props.navigator,this.props.title+'玩法规则', C.uri+'/h5/rule/rule00009.html')
+                            Open.H5Page(this.props.navigator,this.props.title+'玩法规则', C.uri+'/ODF/rule/rule00009.html')
                         }else if(this.props.type=='NE'){
-                            Open.H5Page(this.props.navigator,this.props.title+'玩法规则', C.uri+'/h5/rule/rule00010.html')
+                            Open.H5Page(this.props.navigator,this.props.title+'玩法规则', C.uri+'/ODF/rule/rule00010.html')
                         }
 
                     }}

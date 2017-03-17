@@ -74,6 +74,7 @@ export default class Entrust extends Component{
                         profitPoints:data1.riskManages[0].profitPoints,
                         Value1:parseInt(data1.riskManages[0].lostPoint)+parseInt(data1.riskGuaranteeAmount),
                         Value2:data1.charge,
+                        changeNum:data1.charge,
                         num:parseInt(data1.riskManages[0].lostPoint)+parseInt(data1.riskGuaranteeAmount),
                     })
                     arrData=[data1.purchaseAmount.split(';')[0],data1.riskManages[0].lostPoint,this.state.profitPoints[0]];
@@ -91,6 +92,9 @@ export default class Entrust extends Component{
         }
         var postData={
             "type":"1",
+            "data":{
+                'stockType':feed.productId
+            }
         }
         var postData=JSON.stringify(postData);
         var xinT=JSON.stringify(xinT);
@@ -110,9 +114,11 @@ export default class Entrust extends Component{
 
                 var askPrice=getData.data.askPrice;
                 var bidPrice=getData.data.bidPrice;
+                var contractNo1 =getData.data.contractNo1;//产品号
                 that.setState({
                    askPrice:askPrice,
-                   bidPrice:bidPrice
+                   bidPrice:bidPrice,
+                   contractNo1:contractNo1
                })
 
 
@@ -192,7 +198,7 @@ export default class Entrust extends Component{
                         <View style={styles.mainView}>
                             <View style={styles.listView}>
                                 <Text style={{color: '#333', fontSize: 14}}>{productName} <Text
-                                    style={{color: '#999', fontSize: 11,}}>CL1704</Text></Text>
+                                    style={{color: '#999', fontSize: 11,}}>{feed.productId+this.state.contractNo1}</Text></Text>
                                 <Text style={{color: '#999', fontSize: 11,}}>持仓至明天,凌晨5:58自动平仓</Text>
                             </View>
                             <View style={styles.listView}>
@@ -377,7 +383,7 @@ export default class Entrust extends Component{
         arrData.splice(0,1,data.number)
         this.setState({
             Value1:data.number*this.state.num,
-            Value2:data.number*22,
+            Value2:data.number*this.state.changeNum,
 
         })
 

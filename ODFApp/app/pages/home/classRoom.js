@@ -20,7 +20,6 @@ export default class Simulation extends Component{
     constructor(props){
         super(props);
         this.state={
-
         }
 
     }
@@ -40,7 +39,7 @@ export default class Simulation extends Component{
                     <View style={styles.topView}>
                         <TouchableOpacity
                             activeOpacity={0.8}
-                            onPress={()=>{Open.H5Page(this.props.navigator,'资讯详情',C.uri+'/h5/home/classRoom/roomA.html')}}
+                            onPress={()=>{Open.H5Page(this.props.navigator,'资讯详情',C.uri+'/ODF/home/classRoom/roomA.html?rnd='+Math.random())}}
                         >
                             <View style={[styles.btn1,styles.bgColor1]}>
                                 <Text style={styles.text_b}>基础知识</Text>
@@ -48,7 +47,7 @@ export default class Simulation extends Component{
                         </TouchableOpacity>
                         <TouchableOpacity
                             activeOpacity={0.8}
-                            onPress={()=>{Open.H5Page(this.props.navigator,'资讯详情',C.uri+'/h5/home/classRoom/roomB.html')}}
+                            onPress={()=>{Open.H5Page(this.props.navigator,'资讯详情',C.uri+'/ODF/home/classRoom/roomB.html?rnd='+Math.random())}}
                         >
                             <View style={[styles.btn1,styles.bgColor2]}>
                                 <Text style={styles.text_b}>安全知识</Text>
@@ -59,7 +58,7 @@ export default class Simulation extends Component{
                         <Text style={styles.text_a}>交易宝典</Text>
                         <TouchableOpacity
                             activeOpacity={0.8}
-                            onPress={()=>{Open.H5Page(this.props.navigator,'资讯详情',C.uri+'/h5/home/classRoom/room01.html')}}
+                            onPress={()=>{Open.H5Page(this.props.navigator,'资讯详情',C.uri+'/ODF/home/classRoom/room01.html?rnd='+Math.random())}}
                         >
                             <View style={styles.listView}>
                                 <Image style={styles.img} source={require('./img/001.jpg')}   />
@@ -68,7 +67,7 @@ export default class Simulation extends Component{
                         </TouchableOpacity>
                         <TouchableOpacity
                             activeOpacity={0.8}
-                            onPress={()=>{Open.H5Page(this.props.navigator,'资讯详情',C.uri+'/h5/home/classRoom/room02.html')}}
+                            onPress={()=>{Open.H5Page(this.props.navigator,'资讯详情',C.uri+'/h5/home/classRoom/room02.html?rnd='+Math.random())}}
                         >
                             <View style={styles.listView}>
 
@@ -78,7 +77,7 @@ export default class Simulation extends Component{
                         </TouchableOpacity>
                         <TouchableOpacity
                             activeOpacity={0.8}
-                            onPress={()=>{Open.H5Page(this.props.navigator,'资讯详情',C.uri+'/h5/home/classRoom/room03.html')}}
+                            onPress={()=>{Open.H5Page(this.props.navigator,'资讯详情',C.uri+'/ODF/home/classRoom/room03.html?rnd='+Math.random())}}
                         >
                             <View style={styles.listView}>
 
@@ -88,7 +87,7 @@ export default class Simulation extends Component{
                         </TouchableOpacity>
                         <TouchableOpacity
                             activeOpacity={0.8}
-                            onPress={()=>{Open.H5Page(this.props.navigator,'资讯详情',C.uri+'/h5/home/classRoom/room04.html')}}
+                            onPress={()=>{Open.H5Page(this.props.navigator,'资讯详情',C.uri+'/ODF/home/classRoom/room04.html?rnd='+Math.random())}}
                         >
                             <View style={styles.listView}>
 
@@ -98,7 +97,7 @@ export default class Simulation extends Component{
                         </TouchableOpacity>
                         <TouchableOpacity
                             activeOpacity={0.8}
-                            onPress={()=>{Open.H5Page(this.props.navigator,'资讯详情',C.uri+'/h5/home/classRoom/room05.html')}}
+                            onPress={()=>{Open.H5Page(this.props.navigator,'资讯详情',C.uri+'/h5/home/classRoom/room05.html?rnd='+Math.random())}}
                         >
                             <View style={styles.listView}>
 
@@ -108,7 +107,7 @@ export default class Simulation extends Component{
                         </TouchableOpacity>
                         <TouchableOpacity
                             activeOpacity={0.8}
-                            onPress={()=>{Open.H5Page(this.props.navigator,'资讯详情',C.uri+'/h5/home/classRoom/room06.html')}}
+                            onPress={()=>{Open.H5Page(this.props.navigator,'资讯详情',C.uri+'/ODF/home/classRoom/room06.html?rnd='+Math.random())}}
                         >
                             <View style={styles.listView}>
 
@@ -118,7 +117,7 @@ export default class Simulation extends Component{
                         </TouchableOpacity>
                         <TouchableOpacity
                             activeOpacity={0.8}
-                            onPress={()=>{Open.H5Page(this.props.navigator,'资讯详情',C.uri+'/h5/home/classRoom/room07.html')}}
+                            onPress={()=>{Open.H5Page(this.props.navigator,'资讯详情',C.uri+'/ODF/home/classRoom/room07.html?rnd='+Math.random())}}
                         >
                             <View style={styles.listView}>
 
@@ -128,7 +127,7 @@ export default class Simulation extends Component{
                         </TouchableOpacity>
                         <TouchableOpacity
                             activeOpacity={0.8}
-                            onPress={()=>{Open.H5Page(this.props.navigator,'资讯详情',C.uri+'/h5/home/classRoom/room08.html')}}
+                            onPress={()=>{Open.H5Page(this.props.navigator,'资讯详情',C.uri+'/ODF/home/classRoom/room08.html?rnd='+Math.random())}}
                         >
                             <View style={styles.listView}>
 

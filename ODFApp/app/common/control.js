@@ -15,7 +15,7 @@ let colors = {
 //webview 接口页面地址
 // let uri = 'http://userfinance.shanghaicaiyi.com'
 // let uriT = 'http://servicefinance.shanghaicaiyi.com'
-let uri = 'http://userfinance.gs.9188.com'
+let uri = '192.168.1.79:8080'
 let uriT = 'http://servicefinance.gs.9188.com'
 export default {
     window: window,

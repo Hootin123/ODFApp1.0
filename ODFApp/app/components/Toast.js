@@ -20,7 +20,7 @@ export default (msg, position, duration)  =>  {
     if(!msg)return;
     this.toast = Toast.show(msg, {
         duration: duration || 1200,
-        position: position || -100,
+        position: position || -200,
         shadow: true,
         animation: true,
         hideOnPress: true,

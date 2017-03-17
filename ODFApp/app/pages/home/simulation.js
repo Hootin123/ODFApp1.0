@@ -319,7 +319,7 @@ export default class Simulation extends Component{
 
 
     _onPressItem(data){
-        Open.H5PageBack(this.props.navigator, '金币模拟-'+data.productName, C.uri + '/h5/home/proinfo/chart.html?productId=' + data.productId + '&productName=' + data.productName + '&sid='+ this.state.token, data.type)
+        Open.H5PageBack(this.props.navigator, '金币模拟-'+data.productName, C.uri + '/ODF/home/proinfo/chart.html?rnd='+Math.random()+'&productId=' + data.productId + '&productName=' + data.productName + '&sid='+ this.state.token, data.type)
 
     }
 }
@@ -379,7 +379,7 @@ const styles = StyleSheet.create({
     },
     listView:{
         height:90,
-        marginBottom:10,
+        marginBottom:8,
         flexDirection:'row',
 
     },

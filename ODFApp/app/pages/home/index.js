@@ -37,6 +37,7 @@ export default class Home extends Component{
         }
 
     }
+
     componentWillMount() {
         const { dispatch} = this.props;
         dispatch(fetchBanners());
@@ -92,7 +93,7 @@ export default class Home extends Component{
                     title={'贵金属'}
                     rightButton='新手？'
                     rightButtonAction={() => {
-                            Open.H5Page(this.props.navigator,'活动详情', C.uri+'/h5/home/activityDetails.html')
+                            Open.H5Page(this.props.navigator,'活动详情', C.uri+'/ODF/home/activityDetails.html?rnd='+Math.random())
                     }}
                 />
                 {HomeIndex.proInfo != '000000' ?
@@ -265,7 +266,7 @@ export default class Home extends Component{
                         <View style={styles.linkView}>
                             <TouchableOpacity
                                 activeOpacity={0.8}
-                                onPress={()=>{Open.H5Page(this.props.navigator,'资金安全',C.uri+'/h5/home/moneySafe.html')}}
+                                onPress={()=>{Open.H5Page(this.props.navigator,'资金安全',C.uri+'/ODF/home/moneySafe.html?rnd='+Math.random())}}
                             >
                                 <View style={styles.linkLit}>
                                     <Text style={styles.text_1}>资金安全</Text>
@@ -273,7 +274,7 @@ export default class Home extends Component{
                             </TouchableOpacity>
                             <TouchableOpacity
                                 activeOpacity={0.8}
-                                onPress={()=>{Open.H5Page(this.props.navigator,'风险告知',C.uri+'/h5/home/riskInfor.html')}}
+                                onPress={()=>{Open.H5Page(this.props.navigator,'风险告知',C.uri+'/ODF/home/riskInfor.html?rnd='+Math.random())}}
                             >
                                 <View style={[styles.linkLit,styles.margin]}>
                                     <Text style={styles.text_1}>风险告知</Text>
@@ -281,7 +282,7 @@ export default class Home extends Component{
                             </TouchableOpacity>
                             <TouchableOpacity
                                 activeOpacity={0.8}
-                                onPress={()=>{Open.H5Page(this.props.navigator,'合作机构',C.uri+'/h5/home/organization.html')}}
+                                onPress={()=>{Open.H5Page(this.props.navigator,'合作机构',C.uri+'/ODF/home/organization.html?rnd='+Math.random())}}
                             >
                                 <View style={styles.linkLit}>
                                     <Text style={styles.text_1}>合作机构</Text>

@@ -8,7 +8,7 @@ import C from '../../common/control'
 import {Util} from '../../common/utils';
 
 export let fetchBanners = ()=> {
-    let URL = C.uri+'/h5/home/banner.json?ran='+Math.random();
+    let URL ='http://userfinance.gs.9188.com/h5/home/banner.json?ran='+Math.random();
 
     return dispatch => {
         dispatch(fetchBannerList());

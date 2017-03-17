@@ -1,5 +1,5 @@
 /**
- * Created by pc on 2017/2/7.
+ * Created by pc on 2017/3/17.
  */
 
 import React,{Component} from 'react';
@@ -8,39 +8,46 @@ import {
     Text,
     WebView,
     StyleSheet,
-    TextInput,
-    Alert,
+    Animated,
+    Easing,
+    DeviceEventEmitter,
+    Platform,
     Image,
+    ScrollView,
+    TextInput,
+    Picker,
     TouchableOpacity,
-    TouchableHighlight,
 } from 'react-native';
+import C from '../../../common/control'
+import Open from '../../../common/open';
+import {Util, Local} from '../../../common/utils';
+import Loading from '../../../components/Loading';
+import Toast from '../../../components/Toast';
+import Header from '../../../components/Header';
+import Root from '../../../root';
 
-import C from '../common/control'
-import Open from '../common/open';
-import {Util, Local} from '../common/utils';
-import Toast from '../components/Toast';
-import Modalo from '../components/modal';
-import Header from '../components/Header'
-export default class Register extends Component{
+export default class AddBank extends Component{
     constructor(props){
         super(props);
         this.state={
-            phone: '',
-            pwd: '',
-            phoneCode:'',
             codeText: '获取验证码',
             wite:60,
             stasus:false,
-            content:'',
-            cancel:'',
-            confirm:null,
-            isShow:false,
-            pwdShow:true,
-
-
         }
 
     }
+    _onNext(){
+        var name =this.state.name;
+        var idCode = this.state.idCode;
+        if(!/^[\u4E00-\u9FA5]{2,6}$/.test(name)){
+            return  Toast('姓名应为2-6位汉字!');
+        };
+        if(!/^(\d{15}$|^\d{18}$|^\d{17}(\d|X|x))$/.test(idCode)){
+            return  Toast('身份证号码不正确!');
+        };
+
+    }
+
 
 
     countDown(){
@@ -79,78 +86,72 @@ export default class Register extends Component{
         }
 
     }
-    goPress(){
 
-    }
-
-    _onPressNext(){
-        var phone = this.state.phone;
-        var pwd = this.state.pwd;
-
-        var param={
-            phoneNum:this.state.phone,
-            password:this.state.pwd,
-            checkCode:this.state.phoneCode,
-
-        }
-        if(!/^1[3|4|5|7|8]\d{9}$/.test(phone)){
-            return Toast('您输入手机号码有误,请重新输入!');
-        }
-        if(!this.state.phoneCode)return Toast('请输入手机验证码!');
-
-        if(!/^(?![^A-Za-z]+$)(?![^0-9]+$)[\x21-x7e]{6,12}$/.test(pwd)){
-            return  Toast('您输入的密码有误，密码应为6-12位数字+字母或符号组合!');
-        }
-       Util.post(' http://192.168.2.133:9090/odt-web/user/register.do',param,(data)=>{
-            if(data.code != '0'){
-                return Toast(data.msg);
-           }
-            let token = data.object.token;
-            localStorage.setItem('token', token)//token 缓存在本地
-           Toast('注册成功!');
-        },(err)=>{
-           Toast('网络请求失败');
-        })
-    }
     render(){
         return(
             <View style={styles.container}>
                 <Header
-                    style={{backgroundColor:C.colors.themeColor,borderBottomWidth:1,borderBottomColor:'#eee'}}
-                    styleRight={{fontSize:18,}}
-                    leftIcon={require('./img/header_back.png')}
+                    style={{backgroundColor:C.colors.themeColor}}
+                    leftIcon={require('../../img/header_back.png')}
                     leftIconAction={() => {
                         this.props.navigator.pop()
                     }}
-                    title={'注册'}
-                    rightButton='登录'
-                    rightButtonAction={() => {
-                       Open.UIPage(this.props.navigator, '2')
-                    }}
+                    title={'身份认证'}
                 />
-                {
-                    this.state.isShow?(
-                        <Modalo
-                            content={this.state.content}
-                            cancel={this.state.cancel}
-                            confirm={this.state.confirm}
-                            confirmAction={this.goPress.bind(this)}
-                            cancelAction={()=>{
-                                this.setState({
-                                    isShow:false,
-                                })
-                            }}
-
-                        />
-                    ):null
-                }
-
                 <View style={styles.list}>
                     <View style={styles.listLi}>
                         <View style={[styles.listLiView,styles.border]}>
                             <View style={{position:'relative',flexDirection: 'row'}}>
                                 <View style={{justifyContent:'center'}}>
-                                    <Image style={styles.Pic} source={require('./img/phone.png')} />
+
+                                </View>
+                                <TextInput
+                                    ref="1"
+                                    underlineColorAndroid="transparent"
+                                    style={{height: 40, flex:1,marginLeft:10,color:'#000',marginTop:10,}}
+                                    placeholder="请输入本人储蓄卡号"
+                                    placeholderTextColor="#c6c6c6"
+                                    keyboardType="numeric"
+                                    onChangeText={(carCode) => this.setState({carCode})}
+                                    value={this.state.carCode}
+                                />
+                            </View>
+                        </View>
+                    </View>
+                    <View style={styles.listLi}>
+                        <View style={[styles.listLiView,styles.border]}>
+                            <View style={{position:'relative',flexDirection: 'row'}}>
+                                <View style={{justifyContent:'center'}}>
+
+                                </View>
+                                <Picker
+                                    prompt="请选择银行"
+                                    style={{width:C.window.width-30,color:'#666'}}
+                                    selectedValue={this.state.bank}
+                                    onValueChange={(e) => this.setState({bank: e})}>
+                                    <Picker.Item label="请选择" value="" style={{color:'#666'}} />
+                                    <Picker.Item label="工商银行" value="工商银行" />
+                                    <Picker.Item label="农业银行" value="农业银行" />
+                                    <Picker.Item label="中国银行" value="中国银行" />
+                                    <Picker.Item label="建设银行" value="建设银行" />
+                                    <Picker.Item label="交通银行" value="交通银行" />
+                                    <Picker.Item label="民生银行" value="民生银行" />
+                                    <Picker.Item label="中信银行" value="中信银行" />
+                                    <Picker.Item label="光大银行" value="光大银行" />
+                                    <Picker.Item label="兴业银行" value="兴业银行" />
+                                    <Picker.Item label="平安银行" value="平安银行" />
+                                    <Picker.Item label="浦发银行" value="浦发银行" />
+                                    <Picker.Item label="广发银行" value="广发银行" />
+                                    <Picker.Item label="北京银行" value="北京银行" />
+                                </Picker>
+                            </View>
+                        </View>
+                    </View>
+                    <View style={styles.listLi}>
+                        <View style={[styles.listLiView,styles.border]}>
+                            <View style={{position:'relative',flexDirection: 'row'}}>
+                                <View style={{justifyContent:'center'}}>
+
                                 </View>
                                 <TextInput
                                     ref="1"
@@ -171,7 +172,7 @@ export default class Register extends Component{
                         <View style={[styles.listLiView,styles.border]}>
                             <View style={{position:'relative',flexDirection: 'row'}}>
                                 <View style={{justifyContent:'center'}}>
-                                    <Image style={styles.Pic} source={require('./img/code.png')} />
+
                                 </View>
                                 <TextInput
                                     ref="1"
@@ -185,7 +186,7 @@ export default class Register extends Component{
                                     value={this.state.phoneCode}
                                 />
                                 <TouchableOpacity activeOpacity={0.8}
-                                     onPress={this._getYzm.bind(this,{phone:this.state.phone})}
+                                                  onPress={this._getYzm.bind(this,{phone:this.state.phone})}
                                 >
                                     <View style={styles.codeView}>
                                         <Text style={styles.codeText}>{this.state.codeText}</Text>
@@ -194,55 +195,18 @@ export default class Register extends Component{
                             </View>
                         </View>
                     </View>
-                    <View style={styles.listLi}>
-                        <View style={[styles.listLiView,styles.border]}>
-                            <View style={{position:'relative',flexDirection: 'row'}}>
-                                <View style={{justifyContent:'center'}}>
-                                    <Image style={styles.Pic} source={require('./img/pwd.png')} />
-                                </View>
-                                <TextInput
-                                    ref="2"
-                                    underlineColorAndroid="transparent"
-                                    secureTextEntry={this.state.pwdShow}
-                                    style={{height: 40, flex:1,marginLeft:10,color:'#000',marginTop:10,}}
-                                    placeholder="请输入密码"
-                                    placeholderTextColor="#c6c6c6"
-                                    onChangeText={(pwd) => this.setState({pwd})}
-                                    value={this.state.pwd}
-                                />
-                                <TouchableOpacity
-                                    style={{justifyContent:'center'}}
-                                    activeOpacity={0.8}
-                                    onPress={()=>{
-                                        this.setState({pwdShow:!this.state.pwdShow})
-                                    }}
-                                >
-                                    <View >
-                                        <Image style={styles.Pic_01} source={this.state.pwdShow?require('./img/pwd_001.png'):require('./img/pwd_01.png')} />
-                                    </View>
-                                </TouchableOpacity>
-                            </View>
-                        </View>
-                        <TouchableOpacity
-                            activeOpacity={0.8}
-                        >
-                            <Text style={{color:'#c6c6c6',marginTop:6,textAlign:'right',fontSize:15,marginRight:25,}}>隐私条款</Text>
-                        </TouchableOpacity>
-                    </View>
 
                 </View>
 
                 <View style={styles.listLast}>
                     <TouchableOpacity
                         activeOpacity={0.5}
-                        onPress={this._onPressNext.bind(this)}
                     >
                         <View style={styles.listLiView1}>
                             <Text style={[styles.text,styles.button1]}>完成</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
-                <View style={this.state.isShow?styles.mengban:null}></View>
             </View>
         )
     }
@@ -348,18 +312,6 @@ const styles = StyleSheet.create({
     checkbox:{
         fontSize:16,
     },
-    mengban:{
-        zIndex:2,
-        position: 'absolute',
-        top: -20,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        justifyContent: 'center',
-        alignItems: 'center',
-        height:C.window.height+20,
-        backgroundColor:'#000',
-        opacity:0.4,
-    }
+
 });
 

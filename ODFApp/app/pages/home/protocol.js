@@ -39,7 +39,7 @@ export default class Simulation extends Component{
                 <View style={styles.listView}>
                     <TouchableOpacity
                         activeOpacity={0.8}
-                        onPress={()=>{Open.H5Page(this.props.navigator,'《投资人与用户交易合作协议》', C.uri+'/h5/home/agreement.html')}}
+                        onPress={()=>{Open.H5Page(this.props.navigator,'《投资人与用户交易合作协议》', C.uri+'/ODF/home/agreement.html?rnd='+Math.random())}}
                     >
                         <Text style={styles.text_1}>《投资人与用户参与相关期货品种交易合作协议》</Text>
                     </TouchableOpacity>
@@ -51,7 +51,7 @@ export default class Simulation extends Component{
                 <View style={styles.listView}>
                     <TouchableOpacity
                         activeOpacity={0.8}
-                        onPress={()=>{Open.H5Page(this.props.navigator,'《风险告知书》', C.uri+'/h5/home/InformBook.html')}}
+                        onPress={()=>{Open.H5Page(this.props.navigator,'《风险告知书》', C.uri+'/ODF/home/InformBook.html?rnd='+Math.random())}}
                     >
                         <Text style={styles.text_1}>《风险告知书》</Text>
                     </TouchableOpacity>
@@ -63,7 +63,7 @@ export default class Simulation extends Component{
                 <TouchableOpacity
                     activeOpacity={0.8}
                     style={styles.bottomBtn}
-                    onPress={()=>{Open.H5PageBack(this.props.navigator,'美原油', C.uri+'/h5/home/proinfo/chart.html','cl')}}
+                    onPress={()=>{Open.H5PageBack(this.props.navigator,'美原油', C.uri+'/ODF/home/proinfo/chart.html','cl?rnd='+Math.random())}}
                 >
                     <Text style={{color:'#fff',fontSize:16}}>我已经阅读并同意签署</Text>
                 </TouchableOpacity>

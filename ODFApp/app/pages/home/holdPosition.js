@@ -129,9 +129,13 @@ export default class Entrust extends Component{
                     var ws = new WebSocket("ws://192.168.2.179:8383/quotations");
                     var xinT={
                         "type":"5",
+
                     }
                     var postData={
                         "type":"1",
+                        "data":{
+                            'stockType':feed.productId
+                        }
                     }
                     var postData=JSON.stringify(postData);
                     var xinT=JSON.stringify(xinT);
@@ -140,7 +144,7 @@ export default class Entrust extends Component{
                         // Web Socket 已连接上，使用 send() 方法发送数据
                         ws.send(postData);
 
-                        alert("数据发送中...");
+                        // alert("数据发送中...");
                     };
                     var that=this;
                     ws.onmessage = function (evt) {
